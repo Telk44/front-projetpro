@@ -28,7 +28,7 @@ export default function Login() {
         }
         //redirect when logged in
         if(isSuccess || user) {
-            navigate('/')
+            navigate('/activities')
         }
         dispatch((reset))
 

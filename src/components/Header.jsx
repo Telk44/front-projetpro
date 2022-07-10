@@ -22,10 +22,17 @@ export default function Header() {
                 <Link to='/'> <img className="headerLogo" src={logo} alt="Logo" width="150px"/></Link>
             </div>
             <ul>
-                {user ? (
-                    <li>
-                        <button className="btn" onClick={onLogout}><FaSignOutAlt/>Logout</button>
-                    </li>
+                {user ? (<>
+                        <li>
+                            <Link to="/activities">Mes Activités</Link>
+                        </li>
+                        <li>
+                            <Link to="/account">Mon compte</Link>
+                        </li>
+                        <li>
+                            <button className="btn" onClick={onLogout}><FaSignOutAlt/>Logout</button>
+                        </li>
+                    </>
                 ) : (
                     <>
                         <li>
