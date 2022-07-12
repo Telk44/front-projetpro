@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Account from "./pages/Account"
 import Activities from "./pages/Activities"
 import Register from './pages/Register'
+import ActivityForm from "./pages/ActivityForm"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route path='/account' element={<Account />} />
                     <Route path='/activities' element={<Activities/>} />
+                    <Route path='/activity-form' element={<ActivityForm/>} />
                 </Routes>
             </div>
         </Router>
