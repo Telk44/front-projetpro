@@ -11,7 +11,7 @@ export default function Activities() {
             <Link to='/new-activity' className='btn btn-reverse btn-block'>
                 <FaQuestionCircle/> Créer une nouvelle activité
             </Link>
-            <Link to='/tickets' className='btn btn-block'>
+            <Link to='/activities' className='btn btn-block'>
                 <FaTicketAlt/> Voir mes activités
             </Link>
 

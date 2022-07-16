@@ -8,10 +8,10 @@ export default function Home() {
                 <h1> Liste des activités </h1>
                 {/*<p> Choisissez une option</p>*/}
             </section>
-            <Link to='/new-ticket' className='btn btn-reverse btn-block'>
+            <Link to='/new-activity' className='btn btn-reverse btn-block'>
                 <FaQuestionCircle /> Créer une nouvelle activité
             </Link>
-            <Link to='/tickets' className='btn btn-block'>
+            <Link to='/activities' className='btn btn-block'>
                 <FaTicketAlt/> Voir mes activités
             </Link>
         </>

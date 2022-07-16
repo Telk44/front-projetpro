@@ -1,9 +1,15 @@
-import {useState}from 'react'
-import{useSelector} from "react-redux";
+import {useState, useEffect}from 'react'
+import{useSelector, useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import {toast} from "react-toastify"
+import {createActivity, reset} from "../features/activities/activitySlice"
+import Spinner from "../components/Spinner";
 
 export default function NewActivity() {
 
-    const{user} = useSelector((state) => state.auth)
+    const {user} = useSelector((state) => state.auth)
+    const {isLoading, isError, isSuccess, message} = useSelector((state) => state.activity)
+
     const [userName] = useState(user.userName)
     const [email] = useState(user.email)
     const [title, setTitle] = useState('')
@@ -14,11 +20,51 @@ export default function NewActivity() {
     const [phone, setPhone] = useState('')
     const [bookingEmail, setBookingEmail] = useState('')
     const [category, setCategory] = useState('')
-    const [age, setAge] = useState('0-5 ans')
+    const [ages, setAges] = useState('0-5 ans')
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(isError) {
+            toast.error(message)
+        }
+        if(isSuccess) {
+            dispatch(reset())
+            navigate('/activities')
+        }
+        dispatch(reset())
+    }, [dispatch, isError, isSuccess, navigate, message] )
 
     const onSubmit = (e) => {
         e.preventDefault()
+        // const activityData ={
+        //     category,
+        //     ages,
+        //     title,
+        //     description,
+        //     startDate,
+        //     endDate,
+        //     price,
+        //     phone,
+        //     bookingEmail
+        // }
+        dispatch(createActivity({
+            // category,
+            // ages,
+            title,
+            description,
+            startDate,
+            endDate,
+            price,
+            phone,
+            bookingEmail}))
     }
+
+    if (isLoading) {
+        return <Spinner />
+    }
+
 
     return (
         <>
@@ -44,8 +90,8 @@ export default function NewActivity() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="age">Public concerné</label>
-                        <select name="age" id="age" value={age} onChange={(e) => setAge(e.target.value)}>
+                        <label htmlFor="ages">Public concerné</label>
+                        <select name="ages" id="age" value={ages} onChange={(e) => setAges(e.target.value)}>
                             <option value="">choisissez une tranche d'âge</option>
                             <option value="0-5">0-5 ans</option>
                             <option value="6-8">6-8 ans</option>
@@ -95,6 +141,9 @@ export default function NewActivity() {
                     {/*    <input type="Text" className="form-control" id="webSite" placeholder="webSite" name="price" value={webSite}*/}
                     {/*           onChange={(e) => setWebSite(e.target.value)} />*/}
                     {/*</div>*/}
+                    <div className="form-group">
+                        <button className="btn btn-block">Soumettre</button>
+                    </div>
 
                 </form>
             </section>
