@@ -3,6 +3,7 @@ import authService from "./authService"
 
 //get user from localstorage
 const user = JSON.parse(localStorage.getItem('user'))
+console.log("données du localStorage :",user)
 
 
 const initialState = {

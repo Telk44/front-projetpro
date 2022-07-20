@@ -8,10 +8,15 @@ import Spinner from "../components/Spinner";
 export default function NewActivity() {
 
     const {user} = useSelector((state) => state.auth)
+
     const {isLoading, isError, isSuccess, message} = useSelector((state) => state.activity)
 
     const [userName] = useState(user.userName)
-    const [email] = useState(user.email)
+    console.log(userName)
+    const [userId] = useState(user.userId)
+    console.log(userId)
+
+    // const [email] = useState(user.email)
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [startDate, setStartDate] = useState('')
@@ -38,33 +43,25 @@ export default function NewActivity() {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        // const activityData ={
-        //     category,
-        //     ages,
-        //     title,
-        //     description,
-        //     startDate,
-        //     endDate,
-        //     price,
-        //     phone,
-        //     bookingEmail
-        // }
-        dispatch(createActivity({
-            // category,
-            // ages,
+        const activityData ={
+            userId,
+            category,
+            ages,
             title,
             description,
             startDate,
             endDate,
             price,
             phone,
-            bookingEmail}))
+            bookingEmail
+        }
+        console.log(activityData)
+        dispatch(createActivity({activityData}))
     }
 
     if (isLoading) {
         return <Spinner />
     }
-
 
     return (
         <>

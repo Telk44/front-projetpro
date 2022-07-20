@@ -3,20 +3,25 @@ import axios from 'axios'
 const API_URL = '/activity/'
 
 //create new activity
-const createActivity = async (activityData) => {
-    // const config = {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`
-    // Authorization: 'Bearer ' + localStorage.getItem("token")
-    //     }
-    // }
+const createActivity = async (activityData, token) => {
 
-    const response = await axios.post(API_URL, activityData)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+
+    }
+    console.log(config)
+
+    const response = await axios.post(API_URL, activityData, config)
+
     return response.data
 }
 
+
 const activityService = {
-    createActivity,
+    createActivity
 }
 
 export default activityService
+

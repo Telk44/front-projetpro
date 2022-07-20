@@ -17,5 +17,4 @@ export const useAuthStatus = () => {
         }, [user])
 
     return { loggedIn, checkingStatus }
-
 }
