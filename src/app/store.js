@@ -5,6 +5,6 @@ import activityReducer from '../features/activities/activitySlice'
 export default configureStore({
     reducer:{
         auth: authReducer,
-        activity: activityReducer,
+        activities: activityReducer,
     },
 })

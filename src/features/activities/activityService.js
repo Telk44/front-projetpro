@@ -9,7 +9,6 @@ const createActivity = async (activityData, token) => {
         headers: {
             Authorization: `Bearer ${token}`,
         },
-
     }
     console.log(config)
 
@@ -18,9 +17,25 @@ const createActivity = async (activityData, token) => {
     return response.data
 }
 
+//Get user activities
+const API_URL_GET = '/activity/user/:id'
+const getActivities = async (token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    console.log("getquoi",config)
+
+    const response = await axios.get(API_URL_GET, config)
+
+    return response.data
+    }
 
 const activityService = {
-    createActivity
+    createActivity,
+    getActivities
 }
 
 export default activityService

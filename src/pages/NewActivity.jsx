@@ -3,18 +3,19 @@ import{useSelector, useDispatch} from "react-redux"
 import {useNavigate} from "react-router-dom"
 import {toast} from "react-toastify"
 import {createActivity, reset} from "../features/activities/activitySlice"
-import Spinner from "../components/Spinner";
+import Spinner from "../components/Spinner"
+import BackButton from "../components/BackButton"
 
 export default function NewActivity() {
 
     const {user} = useSelector((state) => state.auth)
 
-    const {isLoading, isError, isSuccess, message} = useSelector((state) => state.activity)
+    const {isLoading, isError, isSuccess, message} = useSelector((state) => state.activities)
 
     const [userName] = useState(user.userName)
     console.log(userName)
-    const [userId] = useState(user.userId)
-    console.log(userId)
+    // const [userId] = useState(user.userId)
+    // console.log(userId)
 
     // const [email] = useState(user.email)
     const [title, setTitle] = useState('')
@@ -44,7 +45,6 @@ export default function NewActivity() {
     const onSubmit = (e) => {
         e.preventDefault()
         const activityData ={
-            userId,
             category,
             ages,
             title,
@@ -65,6 +65,7 @@ export default function NewActivity() {
 
     return (
         <>
+            <BackButton url='/activities' />
             <section className="heading">
                 <h1>Créer une nouvelle activité</h1>
                 <p>Merci de remplir le formulaire ci-dessous</p>
